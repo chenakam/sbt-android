@@ -4,8 +4,9 @@ val pluginVersion = "1.8.0-SNAPSHOT"
 val pluginVersionStable = "1.7.10"
 val gradleBuildVersion = "1.4.0-SNAPSHOT"
 
-val androidToolsVersion = "2.3.0"
-val gradleToolingApi = "2.6"
+val androidToolsVersion = "7.0.0-alpha01"
+val gradleToolingApi = "6.7"
+val buildMergerVersion = "27.3.0-alpha01"
 
 resolvers ++= Seq(
   "Google's Maven repository" at "https://dl.google.com/dl/android/maven2/"
@@ -120,16 +121,16 @@ unmanagedBase := baseDirectory(_ / "libs").value
 resourceDirectory in Compile := baseDirectory(_ / "resources").value
 
 libraryDependencies ++= Seq(
-  "org.ow2.asm" % "asm-all" % "5.0.4",
+  "org.ow2.asm" % "asm-all" % "5.1",
   "com.google.code.findbugs" % "jsr305" % "3.0.1" % "compile-internal",
-  "org.javassist" % "javassist" % "3.20.0-GA",
+  "org.javassist" % "javassist" % "3.27.0-GA",
   "com.hanhuy.sbt" %% "bintray-update-checker" % "0.2", // 1.0 missing
   "com.android.tools.build" % "builder" % androidToolsVersion,
-  "com.android.tools.build" % "manifest-merger" % "25.3.0",
+  "com.android.tools.build" % "manifest-merger" % buildMergerVersion,
   "org.bouncycastle" % "bcpkix-jdk15on" % "1.51",
-  "com.android.tools.build" % "gradle-core" % androidToolsVersion excludeAll
+  "com.android.tools.build" % "gradle-core" % "3.1.4" excludeAll
     ExclusionRule(organization = "net.sf.proguard"),
-  "com.android.tools.lint" % "lint" % "25.3.0",
+  "com.android.tools.lint" % "lint" % buildMergerVersion,
 //  "com.android.tools.external.com-intellij" % "uast" % "145.597.4", // because google didn't sync the correct version...
   "net.orfjackal.retrolambda" % "retrolambda" % "2.5.1"
 )
